@@ -1,13 +1,14 @@
 ## LungCRCT_Causal_Intervention_Simulation  
 
 
-<br> <div align="justify"> For practical implementations of the LungCRCT model in simulating lung cancer treatment progressions or cancer progression itself, a simplified causal intervention pipeline and its methodology were introduced in this paper. Overall procedures of the intervention pipeline can be summarized as Figure 1. 
+<br> <div align="justify"> For practical implementations of the LungCRCT model in simulating lung cancer treatment progressions or cancer progression itself, a simplified causal intervention pipeline and its methodology were introduced in this paper. Overall procedures of the intervention pipeline can be summarized as Figure 1.
 </div>
 
 
 <br> <div align="center">
   <img width="760" height="727" alt="image" src="https://github.com/user-attachments/assets/d6564100-bfb1-46dd-9c01-78d3882d9584" />
 </div>
+(*Mild updates in hyperparamters for LungCRCT training due to tensorflow package upgrade)
 
 <br> <div align="justify"> Based on analysis in [1], the LungCRCT framework was found to not only return valid latent causal representations( Z<sub>cs</sub> ) of tumor, angiogenesis and lymph node enlargements, but also extract the underlying causal relationships via a weighted causal adjacency matrix, leading to the conclusion that causal effects resulting from alteration in individual ground truth lung cancer factors can be approximated through intervening features within the Z<sub>cs</sub> space from LungCRCT under the assumption of J, Pearl’s Structural Causal Model(SCM)[2] and the Structural Causal Layer (intervention) approach from CausalVAE [3]. Thus, for lung cancer intervention simulation, fitted LungCRCT’s Graph Autoencoder structures and the Convolutional VAE Decoder part were utilized to create the basis of the overall pipeline. Furthermore, to enhance significance of causal inference from fitted network structures, residual variable’s μ vector was approximated and added to the results of intervention (ẑ). As Graph Autoencoder-based causal learning approaches do not consider noise distributions in causality extractions, using residual values: (z-ẑ) to estimate bias terms and feature-wise noise distributions can be crucial for SCM assumptions to be sufficiently satisfied. (Post-noise centering for SCM assumption satisfaction). Within LungCRCT based intervention simulations, bias terms: μ are approximated using the sample mean from residuals: r. Adding the bias term: μ to ẑ, significance of intervention within causal latent space was enhanced, leading to better visual simulation results for practical implementations. </div>
 
@@ -28,23 +29,24 @@ $$
 <br><div align="center"><img width="577" height="457" alt="image" src="https://github.com/user-attachments/assets/dd12fe09-172c-465f-8bc0-6082e510c8be" /> 
 </div>
 
-<br><br><div align="justify"> Within the proposed framework, visual results from intervention simulation are returned as MP4 files to help individuals comprehend the consequential causal alteration of lung cancer features in a continuous aspect. For example, the first MP4 exhibits an intervention analysis case where tumor elimination is assumed for cancer treatment (Z<sub>cs,0</sub>: -0.4916 (original value for tumor variable representation) to -0.1). As the intervention process progresses, tumor size is visibly being reduced due to varying Z<sub>cs,0</sub>, along with clear reductions regarding size of enlarged lymph nodes and angiogenesis within the cancerous lung (emphasized by red circles) due to causal intervention effects. Meanwhile, the second MP4 exhibits an intervention analysis case where tumor growth is assumed from a non-cancerous healthy lung state. (Tumor variable Z<sub>cs,0</sub> is intervened from 0.0209 (original value) to -0.3). As intervention progresses, consistent tumor growth within the left lung is observed, with enlargements in the lymph node clearly being developed (emphasized by red circles). 
+<br><br><div align="justify"> Within the proposed framework, visual results from intervention simulation are returned as MP4 files to help individuals comprehend the consequential causal alteration of lung cancer features in a continuous aspect. For example, the first MP4 exhibits an intervention analysis case where tumor elimination is assumed for cancer treatment (Z<sub>cs,0</sub>: -0.4901 (original value for tumor variable representation) to -0.1). As the intervention process progresses, tumor size is visibly being reduced due to varying Z<sub>cs,0</sub>, along with clear reductions regarding size of enlarged lymph nodes and angiogenesis within the cancerous lung (emphasized by red circles) due to causal intervention effects. Meanwhile, the second MP4 exhibits an intervention analysis case where tumor growth is assumed from a non-cancerous healthy lung state. (Tumor variable Z<sub>cs,0</sub> is intervened from 0.0279 (original value) to -0.3). As intervention progresses, consistent tumor growth within the left lung is observed, with enlargements in the lymph node clearly being developed (emphasized by red circles). 
 </div>
 
 
 <br><table width="100%">
   <tr>
     <td width="50%" align="center">
-      <video src="https://github.com/user-attachments/assets/104af710-1208-4779-b966-60f90f356fa6" width="300px" autoplay loop muted playsinline controls></video>
+      <video src="https://github.com/user-attachments/assets/765b7f4e-7c52-46c9-8c83-ad0f13e8e5bd" width="300px" autoplay loop muted playsinline controls></video>
     </td>
     <td width="50%" align="center">
-      <video src="https://github.com/user-attachments/assets/331ed040-416f-404a-bfe7-e73b71dbb7db" width="300px" autoplay loop muted playsinline controls></video>
+      <video src="https://github.com/user-attachments/assets/50e8b9fc-9740-4fb8-b9f0-3597421ade5c" width="300px" autoplay loop muted playsinline controls></video>
     </td>
   </tr>
 </table>
 
-<br> <div align="center"><img width="1242" height="622" alt="image" src="https://github.com/user-attachments/assets/814500c5-258c-4f69-84b7-d4f08b177769" />
+<br> <div align="center"><img width="1235" height="617" alt="image" src="https://github.com/user-attachments/assets/cd825410-bbb6-464a-b616-65b246ecb2d1" />
 </div>
+
 
 
 <br><br> <div align="justify"> As exhibited in MP4 examples, not only latent causal factor extractions for accurate, lightweight downstream causal lung cancer detections, but also valid visual treatment simulations based on intervention analysis can be achieved with high significance under the proposed LungCRCT-based causal intervention simulation framework. Free from spurious correlations by incorporating latent causal representation learning mechanisms to vision model architectures, LungCRCT expands its field from reliable causal vision detection tasks to visualizing lung tumor treatment trajectories or lung cancer progression.
