@@ -416,7 +416,7 @@ os.environ['TF_DETERMINISTIC_OPS']='1'
 tf.executing_eagerly()
 import tensorflow.keras.backend as K
 
-Epochs = 450 #450
+Epochs = 500 #
 lat_dim_1 = 5
 lat_dim_2 = 3
 LungCRCT = lungcrct(180,lat_dim_1,lat_dim_2,16,32,32,16,128,16,4)
@@ -436,11 +436,11 @@ loss_of_cs = []
 loss_of_cv = []
 loss_of_rc = []
 loss_of_dcor = []
-basic_opt0 = tf.keras.optimizers.Adam(learning_rate=0.007)
+basic_opt0 = tf.keras.optimizers.Adam(learning_rate=0.007) #0.007
 basic_opt = tf.keras.optimizers.Adam(learning_rate=0.002)
 basic_opt2 = tf.keras.optimizers.Adam(learning_rate=0.002)
-basic_opt3 = tf.keras.optimizers.Adam(learning_rate=0.001)
-basic_opt4 = tf.keras.optimizers.Adam(learning_rate=0.0007)
+basic_opt3 = tf.keras.optimizers.Adam(learning_rate=0.0008) #0.001
+basic_opt4 = tf.keras.optimizers.Adam(learning_rate=0.0005) #0.0007
 loss_3 = 0
 
 I = tf.eye(lat_dim_2+1,dtype=tf.float32)
@@ -487,12 +487,13 @@ while i < Epochs:
     if (i+1) %10 == 0: print(i+1, d_l,loss_,loss_2,loss_3)
     i = i+1
 
+
 #If already fitted the LungCRCT model, load trained structure-wise weights.h5 using .build()
 
 #tf.keras.utils.set_random_seed(987)
 #os.environ['TF_DETERMINISTIC_OPS']='1'
 
-#Epochs = 450
+#Epochs = 500
 #lat_dim_1 = 5
 #lat_dim_2 = 3
 #LungCRCT = lungcrct(180,lat_dim_1,lat_dim_2,16,32,32,16,128,16,4)
@@ -502,10 +503,10 @@ while i < Epochs:
 #LungCRCT.G_ENC.build(input_shape=(None, lat_dim_2+1))
 #LungCRCT.G_DEC.build(input_shape=(None, lat_dim_2+1))
 
-#LungCRCT.Enc.load_weights('lungcrct_enc_w1.weights.h5')
-#LungCRCT.Dec.load_weights('lungcrct_dec_w1.weights.h5')
-#LungCRCT.G_ENC.load_weights('lungcrct_g_enc_w1.weights.h5')
-#LungCRCT.G_DEC.load_weights('lungcrct_g_dec_w1.weights.h5')
+#LungCRCT.Enc.load_weights('lungcrct_enc_w2.weights.h5')
+#LungCRCT.Dec.load_weights('lungcrct_dec_w2.weights.h5')
+#LungCRCT.G_ENC.load_weights('lungcrct_g_enc_w2.weights.h5')
+#LungCRCT.G_DEC.load_weights('lungcrct_g_dec_w2.weights.h5')
 
 ###########################Causal Representation Learning Results
 
@@ -673,13 +674,13 @@ dummy_input = tf.random.normal([X_tr2.shape[0], 180, 180, 3])
 _ = Upscale(dummy_input)
 
 from tensorflow.keras.optimizers import RMSprop, Adam
-Upscale.compile(optimizer=Adam(learning_rate=5e-3),loss=CombinedLoss(mae_weight=0.2,mse_weight = 0.0, bce_weight=0.8,sobel_weight=0.0),metrics=['mse'])
+Upscale.compile(optimizer=Adam(learning_rate=4e-3),loss=CombinedLoss(mae_weight=0.2,mse_weight = 0.0, bce_weight=0.8,sobel_weight=0.0),metrics=['mse']) #
 
 tf.keras.utils.set_random_seed(321)
-hist2 = Upscale.fit(x=x_hat, y=X_tr2,epochs=180,batch_size=100,shuffle=True) #
+hist2 = Upscale.fit(x=x_hat, y=X_tr2,epochs=200,batch_size=100,shuffle=True) #
 
 #If already fitted, implement trained U-net weights using .load_weights()
-#Upscale.load_weights('upscale_model_weights.weights.h5')
+#Upscale.load_weights('upscale_w2.weights.h5')
 
 ##Upscaling orignal decoder based image using fitted U-net
 
@@ -689,7 +690,7 @@ result1 = Upscale.predict(np.expand_dims(x_hat[ex_idx], axis=0))
 #plt.imshow(result1[0,:,:,:])
 #plt.grid()
 
-## Example image upscaling using U-Net+ CLAHE
+## Example image upscaling using U-Net + CLAHE
 gray = cv2.cvtColor(result1[0,:,:,:], cv2.COLOR_RGB2GRAY)
 clahe = cv2.createCLAHE(clipLimit=1.8, tileGridSize=(7, 7))
 ct_clahe = clahe.apply((gray*255).astype(np.uint8))
@@ -724,8 +725,8 @@ samp_idx = 52 #52(tumor treatment case), 47(tumor growth case)
 print(tag_tr[samp_idx])
 
 # Intervention values
-set1 = np.linspace(-0.4916, -0.1, num=70) #52(final)
-#set1 = np.linspace(0.0209, -0.3, num=70) #47(final)
+set1 = np.linspace(-0.4901, -0.1, num=70) #52(final)
+#set1 = np.linspace(0.0279, -0.3, num=70) #47(final)
 
 
 fig, ax = plt.subplots(figsize=(6, 6))
@@ -776,8 +777,8 @@ def update(frame_idx):
   return [im, title]
 
 ani = FuncAnimation(fig, update, frames=len(set1), interval=90, blit=True)
-#ani.save("Intervention_v1.gif", writer="pillow")
-ani.save("Intervention_v1.mp4", writer="ffmpeg",fps=11, dpi=150)
+#ani.save("Intervention_type1.gif", writer="pillow")
+ani.save("Intervention_type1.mp4", writer="ffmpeg",fps=11, dpi=150)
 
 #plt.close()
 
