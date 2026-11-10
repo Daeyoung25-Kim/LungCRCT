@@ -715,18 +715,19 @@ print(np.max(z_[:,5]),np.min(z_[:,5]))
 
 pip install -U "Pillow>=13.0.0"
 
-samp_idx = 52 #52,47 (treatment simulation)
+samp_idx = 52 #52,47 (treatment, progression simulation), 7 (benign tumor treatment case)
 print(np.array(z_[samp_idx,:])[5])
 
 from matplotlib.animation import FuncAnimation
 
 # Setting original image idx
-samp_idx = 52 #52(tumor treatment case), 47(tumor growth case)
+samp_idx = 52 #52(tumor treatment case), 47(tumor growth case), 7 (benign tumor treatment case)
 print(tag_tr[samp_idx])
 
 # Intervention values
 set1 = np.linspace(-0.4901, -0.1, num=70) #52(final)
 #set1 = np.linspace(0.0279, -0.3, num=70) #47(final)
+#set1 = np.linspace(-0.2089, 0.1, num=70) #7(final)
 
 
 fig, ax = plt.subplots(figsize=(6, 6))
