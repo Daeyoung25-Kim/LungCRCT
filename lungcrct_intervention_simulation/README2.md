@@ -29,11 +29,23 @@ $$
 <br><div align="center"><img width="577" height="457" alt="image" src="https://github.com/user-attachments/assets/dd12fe09-172c-465f-8bc0-6082e510c8be" /> 
 </div>
 
-<br><br><div align="justify"> Within the proposed framework, visual results from intervention simulation are returned as MP4 files to help individuals comprehend the consequential causal alteration of lung cancer features in a continuous aspect. For example, the first MP4 exhibits an intervention analysis case where tumor elimination is assumed for cancer treatment (Z<sub>cs,0</sub>: -0.4901 (original value for tumor variable representation) to -0.1). As the intervention process progresses, tumor size is visibly being reduced due to varying Z<sub>cs,0</sub>, along with clear reductions regarding size of enlarged lymph nodes and angiogenesis within the cancerous lung (emphasized by red circles) due to causal intervention effects. Meanwhile, the second MP4 exhibits an intervention analysis case where tumor growth is assumed from a non-cancerous healthy lung state. (Tumor variable Z<sub>cs,0</sub> is intervened from 0.0279 (original value) to -0.3). As intervention progresses, consistent tumor growth within the left lung is observed, with enlargements in the lymph node clearly being developed (emphasized by red circles). 
+<br><br><div align="justify"> Within the proposed framework, visual results from intervention simulation are returned as MP4 files to help individuals comprehend the consequential causal alteration of lung cancer features in a continuous aspect. For example,  the first (intervention_type0) and second (intervention_type1) MP4 visualizations exhibit intervention analysis cases where tumor elimination is assumed for benign tumor and malignant cancer treatment ((i) first MP4:  Z<sub>cs,0</sub>: -0.2089 (original value for tumor variable representation) to 0.1, (ii) second MP4: Z<sub>cs,0</sub>: -0.4901 to -0.1). As the intervention process progresses, tumor size is visibly being reduced due to varying Z<sub>cs,0</sub>, along with clear reductions regarding size of enlarged lymph nodes and angiogenesis within the benign/cancerous lung (emphasized by red circles) due to causal intervention effects. Meanwhile, the third MP4 (intervention type2) exhibits an intervention analysis case where tumor growth is assumed from a non-cancerous healthy lung state. (Tumor variable Z<sub>cs,0</sub> is intervened from 0.0279 (original value) to -0.3). As intervention progresses, consistent tumor growth within the left lung is observed, with enlargements in the lymph node clearly being developed (emphasized by red circles). 
 </div>
 
 
+
 <br><table width="100%">
+  <tr>
+    <td width=50% align="center">
+      <img width="450" height="476" alt="image" src="https://github.com/user-attachments/assets/65e354d5-74f1-4379-a49a-6e2422c15074" />
+    </td>
+    <td width="50%" align="center">
+      <video src="https://github.com/user-attachments/assets/8842ed00-72c2-409e-8284-50eccfc4a2c5" width="300px" autoplay loop muted playsinline controls></video>
+    </td>
+  </tr>
+</table>
+
+<table width="100%">
   <tr>
     <td width="50%" align="center">
       <video src="https://github.com/user-attachments/assets/765b7f4e-7c52-46c9-8c83-ad0f13e8e5bd" width="300px" autoplay loop muted playsinline controls></video>
@@ -44,7 +56,9 @@ $$
   </tr>
 </table>
 
-<br> <div align="center"><img width="1235" height="617" alt="image" src="https://github.com/user-attachments/assets/cd825410-bbb6-464a-b616-65b246ecb2d1" />
+<br><div align="center"><img width="1232" height="300" alt="image" src="https://github.com/user-attachments/assets/aa5225fb-ba20-4943-b4d4-8c8244c1a508" />
+</div>
+<div align="center"><img width="1235" height="617" alt="image" src="https://github.com/user-attachments/assets/cd825410-bbb6-464a-b616-65b246ecb2d1" />
 </div>
 
 
